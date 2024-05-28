@@ -1,0 +1,151 @@
+
+body {
+  background: #fafafa;
+  background-color: #edf2f4;
+  color: #000000;
+  margin-top: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #444444;
+}
+h5{
+  font-family: sans-serif,Arial, Helvetica;
+}
+
+ul {
+  margin: 0;
+}
+
+.bg-steel {
+  background-color: #5f788a;
+}
+
+.site-header .navbar-nav .nav-link {
+  color: #000000;
+}
+
+.site-header .navbar-nav .nav-link:hover {
+  color: #ffffff;
+}
+
+.site-header .navbar-nav .nav-link.active {
+  font-weight: 500;
+}
+
+.content-section {
+  background: #8d99ae;
+  padding: 5px 10px;
+  border: 1px solid #dddddd;
+  border-radius: 3px;
+  margin-bottom: 10px;
+  width: 500px;
+  height: 600px;
+}
+.formlayout{
+  margin-top: 10px;
+  max-width: max-content;
+  height: max-content;
+  align-content: center;
+}
+.article-title {
+  color: #2a3342;
+}
+
+a.article-title:hover {
+  color: #436685;
+  text-decoration: none;
+}
+
+.article-content {
+  white-space: pre-line;
+}
+
+.article-img {
+  height: 65px;
+  width: 65px;
+  margin-right: 16px;
+}
+
+.article-metadata {
+  padding-bottom: 1px;
+  margin-bottom: 4px;
+  border-bottom: 1px solid #e3e3e3
+}
+
+.article-metadata a:hover {
+  color: #333;
+  text-decoration: none;
+}
+
+.article-svg {
+  width: 25px;
+  height: 25px;
+  vertical-align: middle;
+}
+
+.account-img {
+  height: 125px;
+  width: 125px;
+  margin-right: 20px;
+  margin-bottom: 16px;
+}
+
+.account-heading {
+  font-size: 2.5rem;
+}
+
+
+.article-img {
+  width: 100px;
+  height: 100px;
+}
+
+.userpost{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.navbar{
+  background-color: #181c45;
+}
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+
+.card {
+  flex: 1 1 300px;
+  height: 500px;
+  max-width: 350px;
+  background-color: #8d99ae;
+  
+}
+
+.card-title a{
+  font-family: georgia;
+}
+.card-title p{
+  font-family: Verdana;
+}
+
+.post-content{
+  background-color: white;
+  box-shadow: #2a3342;
+  border-radius: 3%;
+  font-family: Monospace;
+  font-size: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.post-download{
+  text-align: left;
+  padding-left: 20px;
+  padding-bottom: 20px;
+  margin-top: 10px;
+}

@@ -1,0 +1,90 @@
+{% extends "blog/home.html" %}
+
+{% block content %}
+<div class="jumbotron shadow-lg mt-0 mb-0" style="height: 100%;">
+  <article class="row">
+    <div class="col-md-4 d-flex align-items-center justify-content-center author-image-container" style="background-color: #8d99ae;">
+      <a href="{{ object.author.profile.image.url }}" target="_blank" class="author-image-link">
+        <img src="{{ object.author.profile.image.url }}" alt="{{ object.author.username }}'s Profile Picture" class="author-image rounded-circle img-thumbnail img-fluid">
+      </a>
+    </div>
+    
+    <div class="col-md-7">
+      <div class="meta-info">
+        <div class="d-flex justify-content-between">
+          <a class="mr-1 text-dark" href="{% url 'user-posts' object.author.username %}">
+            <h4>{{ object.author }}</h4>
+          </a>
+          <small class="text-muted">{{ object.date_upload }}</small>
+        </div>
+        {% if object.author != user %}
+        <div class="form-group d-flex ">          
+          <a href="{{ object.file.url }}" download class="btn btn-secondary"><i class="fas fa-download"></i> Download</a>
+        </div>
+        {% endif %}
+        <hr>
+        {% if object.author == user %}
+        <div class="edit-options">
+          <a class="btn btn-secondary btn-sm" href="{% url 'post-update' object.id %}">Update</a>
+          <a class="btn btn-danger btn-sm" href="{% url 'post-delete' object.id %}">Delete</a>
+        </div>
+        {% endif %}
+      </div>
+      <br>
+      <div class="displaysection">
+        {% if object.file %}
+          {% if object.extension in '.jpg.jpeg.png' %}
+            <a href="{{ object.file.url }}" download><img src="{{ object.file.url }}" alt="" class="img-fluid" style="max-width: 500px;max-height: 280px;"></a>
+          {% elif object.extension == '.mp4' %}
+            <div>
+              <video controls style="max-width: 250px; height: 250px; max-height: 260px;" class="vjs-tech mt-2">
+                <source src="{{ object.file.url }}" type="video/mp4" class="embed-responsive">
+                Your browser does not support the video tag.
+              </video>
+            </div>
+          {% else %}
+          <div class="container">
+            <a href="{{ object.file.url }}" style="margin: 125px;" download>{{ object.file }}</a>
+          </div>
+            
+          {% endif %}
+        {% endif %}
+      </div>
+      <h3>{{ object.title }}</h3>
+      <p class="article-content">{{ object.content }}</p>
+    </div>
+  </article>
+</div>
+{% endblock content %}
+
+<style>
+  
+  .displaysection {
+    max-width: 100%;
+    overflow: hidden;
+    height: 600px;
+  }
+  .author-image-container {
+    padding: 20px;
+  }
+
+
+  .author-image-link {
+    display: block;
+    text-align: center;
+  }
+
+  .author-image {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border: 3px solid #fff;
+    transition: all 0.3s ease;
+  }
+
+  .author-image:hover {
+    transform: scale(1.1);
+  }
+
+
+</style>

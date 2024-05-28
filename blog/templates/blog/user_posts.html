@@ -1,0 +1,73 @@
+{% extends "blog/home.html" %}
+{% block content %}
+<div class="container d-flex flex-wrap justify-content-center" style="padding-top: 20px;">
+  {% for post in posts %}
+    <div class="card m-3 shadow-lg" style="width: 328px; max-width: 328px;">
+      <div class="card-header d-flex align-items-center">
+        <a href="{{ post.author.profile.image.url }}" target="_blank">
+          <img src="{{ post.author.profile.image.url }}" alt="" class="rounded-circle img-thumbnail mr-3" style="width: 50px; height: 50px;">
+        </a>
+        <div>
+          <a class="text-dark" href="{% url 'user-posts' post.author.username|urlencode %}">
+            <h5 class="mb-0">{{ post.author }}</h5>
+          </a>
+          <small class="text-muted">{{ post.date_upload|date:"F d, Y" }}</small>
+        </div>
+      </div>
+      <div class="card-body">
+        <h5 class="card-title">
+          <a class="text-dark" href="{% url 'post-detail' post.id %}">{{ post.title }}</a>
+          <p class="card-text">{{ post.content }}</p>
+        </h5>
+        <br>
+        <div class="post-content">
+          {% if post.file %}
+            {% if post.extension in '.jpg.jpeg.png' %}
+              <a href="{{ post.file.url }}"  download ><img src="{{ post.file.url }}" alt="" class="img-fluid" style="max-width: 250px; height: 200px;padding:20px"></a>
+
+            {% elif post.extension == '.mp4' %}
+              <div>
+                <video id="video-1_html_api" class="vjs-tech" preload="auto" style="max-width: 250px; height: 200px;padding: 20px;" >
+                  <source src="{{ post.file.url }}" type="video/mp4" class="embed-responsive">
+                </video>
+              </div>
+            {% else %}
+              <a href="{{ post.file.url }}"  download class="text-dark" style="max-width: 250px; height: 200px;"><h5>{{ post.file }}</h5></a>
+            {% endif %}
+          {% endif %}
+        </div>
+
+      </div>
+      <div class="post-download">
+        <a href="{{ post.file.url }}" download class="btn btn-light btn-sm">
+          <i class="fas fa-download"></i> Download
+        </a>
+        
+      </div>
+    </div>
+  {% endfor %}
+
+</div>
+    
+{% endblock content %}
+<div>
+  {% if is_paginated %}
+
+  {% if page_obj.has_previous %}
+    <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+  {% endif %}
+
+  {% for num in page_obj.paginator.page_range %}
+    {% if page_obj.number == num %}
+      <a class="btn btn-info mb-4" href="?page={{ num }}">{{ num }}</a>
+    {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+      <a class="btn btn-outline-info mb-4" href="?page={{ num }}">{{ num }}</a>
+    {% endif %}
+  {% endfor %}
+
+  {% if page_obj.has_next %}
+    <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.next_page_number }}">Next</a>
+  {% endif %}
+
+{% endif %}
+</div>

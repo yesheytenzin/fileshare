@@ -1,0 +1,12 @@
+<!-- log out page-->
+{% extends "blog/home.html" %}
+{% block content %}
+<div class="container d-flex align-items-center justify-content-center">
+    <div class="text-center" style="margin: 250px;">
+        <h3>You have been logged out</h3>
+        <div class="border-top pt-2">
+            <a href="{% url 'login' %}">Log In Again</a>
+        </div>
+    </div>
+</div>
+{% endblock content %}
